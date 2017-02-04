@@ -11,6 +11,11 @@ eng2sp['one'] = 'uno'
 
 """
 
+
+"""
+    字典有一个方法，get，接受一个键和一个默认值。如果这个键在字典中存在，get 就会返回对应的值，如果不存在返回默认值
+"""
+
 if __name__ == '__main__':
     print eng2sp
     print len(eng2sp)
