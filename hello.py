@@ -1,6 +1,7 @@
 # -- coding: UTF-8 --
+from __future__ import print_function, division
 
-
+import bisect
 # coding=utf8
 
 # pi = 3.14
@@ -247,6 +248,7 @@
 
 import math
 
+
 #
 # def shift_number(number):
 #     if number < 10:
@@ -453,6 +455,7 @@ def uses_all(word, required):
             return False
     return True
 
+
 # print has_no_e("hello")
 # print avoids('hello', 'm')
 # print uses_only('hello', 'hello')
@@ -460,33 +463,362 @@ def uses_all(word, required):
 
 # 字符串是否递增
 #
-def is_abecedarian(word):
-    previous = word[0]
-    for c in word:
-        if c < previous:
-            return False
-        previous = c
-    return True
+# def is_abecedarian(word):
+#     previous = word[0]
+#     for c in word:
+#         if c < previous:
+#             return False
+#         previous = c
+#     return True
+#
+# print is_abecedarian('abcb')
+#
+#
+# def is_abecedarian(word):
+#     if len(word) <= 1:
+#         return True
+#     if word[0] > word[1]:
+#         return False
+#     return is_abecedarian(word[1:])
+#
+# print is_abecedarian('abcb')
+#
+#
+# def is_abecedarian(word):
+#     i = 0
+#     while i < len(word)-1:
+#         if word[i + 1] < word[i]:
+#             return False
+#         i += 1
+#     return True
+#
+# print is_abecedarian('abc')
 
-print is_abecedarian('abcb')
 
 
-def is_abecedarian(word):
-    if len(word) <= 1:
-        return True
-    if word[0] > word[1]:
+# list 列表
+
+# a = 10
+# b = 'str'
+# lists = [a, b]
+# a = 9
+# print lists
+
+# 列表方法
+
+# t = ['a', 'b', 'c']
+# t.append('d')
+# print t
+#
+# t2 = ['e' ,'f']
+# t.extend(t2)
+# print t
+# t.sort()
+# print t
+
+
+
+########
+# map, filter, reduce 映射，过滤，削减
+########
+
+
+def add_all(t):
+    total = 0
+    for x in t:
+        total += x
+    return total
+
+
+t = [1, 2, 3]
+
+
+# print add_all(t)
+# print sum(t)
+#
+def capitalize_all(t):
+    res = []
+    for s in t:
+        res.append(s.capitalize())
+    return res
+
+
+def only_upper(t):
+    res = []
+    for s in t:
+        if s.isupper():
+            res.append(s)
+    return res
+
+
+# print only_upper('asdF')
+
+
+# pop 方法  改变列表并返回被删除的元素。如果不提供索引，删除并返回最后一个元素。
+# del 运算符 如果不需要被删除的值，使用这个
+# remove 方法 删除不知道索引的元素, 只删除第一个
+# 以上方法运算符都可以使用切片
+
+# t = ['a', 'b', 'c']
+# del t[1]
+# print t.pop(1)
+# print t
+
+# t = ['a', 'b', 'c', 'a']
+# t.remove('a')
+# print t
+
+# 使用 list 函数将 str 转成 list
+# s = 'spam'
+# t = list(s)
+# print t
+
+# 使用split 方法将字符串分成单词
+# s = 'pinging for the fjords'
+# t = s.split()
+# print t
+# # 分隔符
+# s = 'spam-spam-spsm'
+# delimiter = '-'
+# s.split(delimiter)
+# print s.split(delimiter)
+#
+# # join 方法 和 split 相反。他接受一个字符串的列表，并将元素串联起来。
+# t = ['pinging', 'for', 'the', 'fjords']
+# delimiter = ' '
+# print delimiter.join(t)
+
+# a = [12, 14, 15]
+# b = a
+# b[0] = 19
+# print a
+#
+#
+# c = 'aaaa'
+# d = c
+# d = 'bb'
+# print c
+
+# def delete_head(t):
+#     del t[0]
+#
+# letters = ['a', 'b', 'c']
+# delete_head(letters)
+# print letters
+#
+#
+# def bad_delet_head(t):
+#     return t[1:]
+#
+# print bad_delet_head(letters)
+#
+#
+# def nested_sum(t):
+#     sum = 0
+#     for t1 in t:
+#         for num in t1:
+#             sum += num
+#     return sum
+#
+#
+# def nested_sum_2(t):
+#     res = 0
+#     for t1 in t:
+#         res += sum(t1)
+#     return res
+#
+#
+# t = [[1, 2], [3],[4, 5, 6]]
+# print nested_sum(t)
+# print nested_sum_2(t)
+
+#
+# def custom(t):
+#     res = []
+#     for i in range(len(t)):
+#         res.append(sum(t[:i+1]))
+#     return res
+#
+# t = [1, 2, 3]
+# print custom(t)
+
+
+# def middle(t):
+#     del t[len(t) -1]
+#     del t[0]
+#     return t
+#
+# t = [1, 2, 3, 4]
+# print middle(t)
+
+
+# def chop(t):
+#     del t[len(t) -1]
+#     del t[0]
+#
+# t = [1, 2, 3, 4]
+# chop(t)
+# print t
+
+#
+# def is_sorted(t):
+#     temp = sorted(t)
+#     if temp == t:
+#         return True
+#     return False
+#
+# print is_sorted([1, 2, 2])
+# print is_sorted(['b', 'a'])
+
+#
+# def is_anagram(word,word2):
+#     list1 = list(word)
+#     list2 = list(word2)
+#     if len(list1) != len(list2):
+#         return False
+#
+#     for letter in list1:
+#         if letter in list2:
+#             list2.remove(letter)
+#         else:
+#             return False
+#     return True
+#
+#
+# print is_anagram('asd','dss')
+
+
+# def has_duplicates(t):
+#     for i in range(len(t)):
+#         if t[i] in t[i+1:]:
+#             return True
+#     return False
+#
+# print has_duplicates(['a','b','c','a'])
+
+#
+# fin = open('words.txt')
+# list = []
+
+# for line in fin:
+#     word = line
+#     list.append(word)
+# print list
+
+# for line in fin:
+#     word = line
+#     list = list + [word]
+#
+# print list
+
+
+
+
+
+
+def make_word_list():
+    """
+    reads lines from a file and build a list using append.
+    :return: list of strings
+    """
+    word_list = []
+    fin = open('words.txt')
+    for line in fin:
+        word = line.strip()
+        word_list.append(word)
+    return word_list
+
+
+def in_bisect(word_list, word):
+    """check weather a word is in a list using bisection search.
+    Precondition: the words in the list are sorted
+
+    :param word_list: list of strings
+    :param word: string
+    """
+    if len(word_list) == 0:
         return False
-    return is_abecedarian(word[1:])
 
-print is_abecedarian('abcb')
+    i = len(word_list) // 2 # // 结果四舍五入
+    if word_list[i] == word:
+        return True
+
+    if word_list[i] > word:
+        # search the first half
+        return in_bisect(word_list[:i], word)
+    else:
+        # search the second half
+        return in_bisect(word_list[i + 1:], word)
 
 
-def is_abecedarian(word):
-    i = 0
-    while i < len(word)-1:
-        if word[i + 1] < word[i]:
+def in_bisect_cheat(word_list, word):
+    """checks wheather a word is in a list using bisection search.
+    Precondition: the words in the list are sorted
+
+    :param word_list: list of strings
+    :param word: string
+    """
+    i = bisect.bisect_left(word_list, word)
+    if i == len(word_list):
+        return False
+
+    return word_list[i] == word
+
+
+def reverse_pair(word_list, word):
+    """ find the shift word of a word
+
+    :param word_list: list of strings
+    :param word: string
+    """
+    rev_word = word[::-1]
+    return in_bisect(word_list, rev_word)
+
+
+def interlock(word_list, word):
+    """check whether a word contains two interleaved words.
+
+    :param word_list: list of strings
+    :param word: string
+    """
+    evens = word[::2]
+    odds = word[1::2]
+    return in_bisect(word_list, evens) and in_bisect(word_list, odds)
+
+
+def interlock_general(word_list, word, n=3):
+    """check wheather a word contains n interleaved words.
+
+    :param word_list: list of strings
+    :param word: string
+    :param n: number if interleaved words
+    """
+    for i in range(n):
+        inter = word[i::n]
+        if not in_bisect(word_list, inter):
             return False
-        i += 1
     return True
 
-print is_abecedarian('abc')
+
+if __name__ == '__main__':
+    word_list = make_word_list()
+    #
+    # for word in ['aa', 'alien', 'allen', 'zymurgy']:
+    #     print(word, 'in list', in_bisect(word_list, word))
+    #
+    # for word in ['aa', 'alien', 'allen', 'zymurgy']:
+    #     print(word, 'in list', in_bisect_cheat(word_list, word))
+
+    # for word in word_list:
+    #     if reverse_pair(word_list, word):
+    #         print(word, word[::-1])
+
+    # for word in word_list:
+    #     if interlock(word_list, word):
+    #         print(word, word[::2], word[1::2])
+
+    for word in word_list:
+        if interlock_general(word_list, word, 3):
+            print(word, word[0::3], word[1::3], word[2::3])
+
+            
