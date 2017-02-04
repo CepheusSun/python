@@ -246,6 +246,7 @@
 
 
 import math
+
 #
 # def shift_number(number):
 #     if number < 10:
@@ -289,3 +290,203 @@ import math
 # n = int(raw_input())
 # print counter(n)
 
+
+# 字符串
+# fruit = 'banana'
+# letter = fruit[1]
+# print letter
+# print len(fruit)
+# print fruit[-1]
+
+
+# 遍历字符串
+
+# index = 0
+# while index < len(fruit):
+#     letter = fruit[index]
+#     print letter
+#     index += 1
+
+
+# for char in fruit:
+#     print char
+
+
+# prefixes = 'JKLMNOPQ'
+# suffix = 'ack'
+#
+# for letter in prefixes:
+#     print letter + suffix
+
+
+
+# 字符串切片
+
+# s = 'Monty Python'
+# print s[0:5]
+# print s[6:12]
+
+#  [n:m]操作符返回从第n个到第m个字符串的部分字符串
+#  包括第一个，但是不包括最后一个。
+
+# 如果你省略第一个索引，切片起始与0，如果省略最后一个起始于结尾。
+# 如果n>m结果是空字符串
+
+
+# greeting = 'Hello World'
+# new_greeting = 'J' + greeting[1:]
+# print new_greeting
+
+
+# searching 搜索
+#
+def find(word, letter):
+    index = 0
+    while index < len(word):
+        if word[index] == letter:
+            return index
+        index += 1
+    return -1
+
+
+# print find('hello', 'm')
+
+# 循环和计数
+#
+# word = 'banana'
+# count = 0
+# for letter in word:
+#     if letter == "a":
+#         count += 1
+# print count
+
+
+
+
+# 字符串相关方法
+#
+# word = 'banana'
+# new_word = word.upper()
+# # print new_word
+# index = word.find('a')
+# print index
+# print word.find('an', 3, 5)
+#  参数： 需要查找的字符(串)，从第n个开始查找，查找终点
+
+
+# in 运算符
+
+# print 'a' in 'banana'
+
+
+# 字符串比较
+#
+# if word == 'banana':
+#     print 'equal'
+
+# > < 运算符，相当于 ASCII 排序
+
+
+###############################
+#
+#
+#           案例分析
+#
+#
+###############################
+
+
+# 读取单词列表
+# fin = open('words.txt')
+# print fin
+
+#  readline， 其从文件中读取字符直到到达新行并 将结果作为字符串返回:
+# print fin.readline()
+
+
+# line = fin.readline()
+# word = line.strip()
+# print word
+
+# for line in fin:
+#     word = line.strip()
+#     print word
+#
+#
+#
+# line = fin.readline()
+# line = fin.readline()
+# print line
+
+
+# 搜索
+def has_no_e(word):
+    for letter in word:
+        if letter == 'e':
+            return False
+    return True
+
+
+# 只要有一个字符在 forbidden 中，都返回真。
+# 模糊查找
+def avoids(word, forbidden):
+    for letter in word:
+        if letter in forbidden:
+            return False
+    return True
+
+
+# 只有 word 中所有的字符都能在 available 中找到，才为真。
+# 这个方法可以用来排除非法字符
+def uses_only(word, available):
+    for letter in word:
+        if letter not in available:
+            return False
+    return True
+
+
+# word 是否含有 required 中的所有字符
+# 验证一个字符必须含有某些字符串
+def uses_all(word, required):
+    for letter in required:
+        if letter not in word:
+            return False
+    return True
+
+# print has_no_e("hello")
+# print avoids('hello', 'm')
+# print uses_only('hello', 'hello')
+# print uses_all('Hello', 'ol')
+
+# 字符串是否递增
+#
+def is_abecedarian(word):
+    previous = word[0]
+    for c in word:
+        if c < previous:
+            return False
+        previous = c
+    return True
+
+print is_abecedarian('abcb')
+
+
+def is_abecedarian(word):
+    if len(word) <= 1:
+        return True
+    if word[0] > word[1]:
+        return False
+    return is_abecedarian(word[1:])
+
+print is_abecedarian('abcb')
+
+
+def is_abecedarian(word):
+    i = 0
+    while i < len(word)-1:
+        if word[i + 1] < word[i]:
+            return False
+        i += 1
+    return True
+
+print is_abecedarian('abc')
