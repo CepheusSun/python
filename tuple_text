@@ -109,17 +109,37 @@ if __name__ == '__main__':
     # print(d)
 
     # directory[last, first] = number
-    string = read_file('words.txt')
-    letter_seq = most_freguent(string)
-    for x in letter_seq:
-        print(x)
+    # string = read_file('words.txt')
+    # letter_seq = most_freguent(string)
+    # for x in letter_seq:
+    #     print(x)
+    #
+    # import random
+    # for i in range(10):
+    #     x = random.random()
+    #     print(x)
+    #
+    # fout = open('output.txt', 'w')
+    # line = "this here's the wattle,\n"
+    # fout.write(line)
+    # fout.close()
+    #
+    # import os
+    # cwd = os.getcwd()
+    # print(cwd)
+    # print(os.path.abspath('output.txt'))
+    #
+    # try:
+    #     open('badfile')
+    # except:
+    #     print('something wrong')
 
-    import random
-    for i in range(10):
-        x = random.random()
-        print(x)
-
-    fout = open('output.txt', 'w')
-    line = "this here's the wattle,\n"
-    fout.write(line)
-    fout.close()
+    ####### 数据库相关
+    # import dbm
+    # db = dbm.open('caption', 'c')
+    # db.close()
+    import pickle
+    t = [1, 2, 3]
+    s = pickle.dumps(t)
+    t2 = pickle.loads(s)
+    print (t2)

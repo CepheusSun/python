@@ -1,0 +1,89 @@
+# -- coding: UTF-8 --
+from __future__ import print_function, division
+
+class Point:
+    """Replace a point in 2D space.
+
+    attributes: x, y
+    """
+    def __init__(self):
+        print('init point')
+
+
+def print_point(p):
+    """print a point object in human-readable format"""
+    print('(%g, %g)' % (p.x, p.y))
+
+
+class Rectangle:
+    """represents a rectagle
+
+    attributes: width, height, corner
+    """
+    def __init__(self):
+        print('init rectangle')
+
+
+def find_center(rect):
+    """:returns a point at the center of a rectangle"""
+    p = Point()
+    p.x = rect.corner.x + rect.width/2.0
+    p.y = rect.corner.y + rect.height/2.0
+    return p
+
+
+def grow_rectangle(rect, dwidth, dheight):
+    """modifies the rectangle by adding to its width and height
+
+    :param rect: rectangle object
+    :param dwidth: change in width (can be negative)
+    :param dheight: change in height (can be negative)
+    :return:
+    """
+    rect.width += dwidth
+    rect.height += dheight
+    
+
+def main():
+    print(Point)
+    p = Point()
+    blank = Point()
+    blank.x = 3
+    blank.y = 4
+    print('blank', end=' ')
+    print_point(blank)
+
+    box = Rectangle()
+    box.width = 100.0
+    box.height = 200.0
+    box.corner = Point()
+    box.corner.x = 0.0
+    box.corner.y = 0.0
+
+    center = find_center(box)
+    print('center', end=' ')
+    print_point(center)
+
+    print(box.width)
+    print(box.height)
+    print('grow')
+    grow_rectangle(box, 50, 100)
+    print(box.width)
+    print(box.height)
+
+
+def distance_between_points(p1, p2):
+    """Computes the distance between two Point objects.
+
+    :param p1:Point
+    :param p2:Point
+    :return:float
+    """
+    import math
+    dx = p1.x - p2.x
+    dy = p1.y - p2.y
+    return math.sqrt(p1 ** 2 + p2 ** 2)
+
+
+if __name__ == '__main__':
+    main()
