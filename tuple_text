@@ -2,5 +2,124 @@
 from __future__ import print_function, division
 
 
+def printall(*args):
+    print(args)
+
+
+def sumall(*args):
+    sum = 0
+    for i in args:
+        sum += i
+    return sum
+
+
+def has_match(t1, t2):
+    for x, y in zip(t1, t2):
+        if x == y:
+            return True
+    return False
+
+
+def make_histogram(s):
+    """Make a map from letters to number of times they appear in s.
+
+    :param s: string
+    :return: map from letter to frequency
+    """
+    hist = {}
+    for x in s:
+        hist[x] = hist.get(x, 0) + 1
+        return hist
+
+
+def most_freguent(s):
+    """Sorts the letters in reverse order of frequency.
+
+    :param s: strng
+    :return: list of letters
+    """
+    hist = make_histogram(s)
+    t = []
+    for x, freq in hist.items():
+        t.append((freq,x))
+
+    t.sort(reverse=True)
+
+    res = []
+    for freq, x in t:
+        res.append(x)
+
+    return res
+
+
+def read_file(filename):
+    """Return the contents of a file as a string."""
+    return open(filename).read()
+
+
 if __name__ == '__main__':
-    print(10)
+    # t = 'a', 'b', 'c', 'd', 'e'
+    # print(t)
+    # print(type(t))
+    # t1 = 'a',
+    # print(t1)
+    #
+    # t = ('a',) + ('b',)
+    # print(t)
+    # a = 'a',
+    # b = 'b',
+    # temp = a
+    # a = b
+    # b = temp
+    #
+    # addr = 'month@python.org'
+    # uname, doman = addr.split('@')
+    # print(uname, doman)
+    # print(type(uname)) #str
+    #
+    # t = divmod(7, 3)
+    # print(t)
+    #
+    # quot, rem = divmod(7, 3)
+    # print(quot)
+    # printall(addr, t, quot, rem)
+    # print(sumall(1, 2, 3, 4, 5))
+    # #
+    # s = 'abc'
+    # t = [0, 1, 2]
+    # print(type(zip(s, t)))
+    # for pair in zip(s,t):
+    #     print(pair)
+    # print(zip(s, t))
+
+    # for index, element in enumerate('abc'):
+    #     print(index, element)
+    # d = {'a':0, 'b':1, 'c':2}
+    # t = d.items()
+    # print(t)
+    # for key, value in d.items():
+    #     print(key, value)
+    #
+    #
+    # t = [('a', 0), ('c', 2), ('b',1)]
+    # d = dict(t)
+    # print(d)
+    #
+    # d = dict(zip('abc', range(3)))
+    # print(d)
+
+    # directory[last, first] = number
+    string = read_file('words.txt')
+    letter_seq = most_freguent(string)
+    for x in letter_seq:
+        print(x)
+
+    import random
+    for i in range(10):
+        x = random.random()
+        print(x)
+
+    fout = open('output.txt', 'w')
+    line = "this here's the wattle,\n"
+    fout.write(line)
+    fout.close()
