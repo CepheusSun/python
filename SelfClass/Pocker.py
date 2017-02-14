@@ -124,6 +124,10 @@ def find_defining_class(obj, method_name):
     return None
 
 
+def function():
+    pass
+
+
 def main():
     deck = Deck()
     deck.shuffle()
@@ -134,6 +138,7 @@ def main():
     deck.move_cards(hand, 5)
     hand.sort()
     print(hand)
+
 
 if __name__ == '__main__':
     main()
