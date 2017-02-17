@@ -36,9 +36,6 @@ def answer_the_question(n):
         return
 
     first_number = 1
-    for i in range(n):
-        if i
-
 
 
 
