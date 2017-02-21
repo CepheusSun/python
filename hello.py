@@ -712,10 +712,6 @@ def only_upper(t):
 # print list
 
 
-
-
-
-
 def make_word_list():
     """
     reads lines from a file and build a list using append.
@@ -739,7 +735,8 @@ def in_bisect(word_list, word):
     if len(word_list) == 0:
         return False
 
-    i = len(word_list) // 2 # // 结果四舍五入
+    # 结果四舍五入
+    i = len(word_list) // 2
     if word_list[i] == word:
         return True
 
@@ -752,7 +749,7 @@ def in_bisect(word_list, word):
 
 
 def in_bisect_cheat(word_list, word):
-    """checks wheather a word is in a list using bisection search.
+    """checks weather a word is in a list using bisection search.
     Precondition: the words in the list are sorted
 
     :param word_list: list of strings
