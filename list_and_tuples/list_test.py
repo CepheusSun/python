@@ -87,6 +87,18 @@ def main():
     print(list3[1])
 
 
+def f2(my_dict):
+    temp = ''
+    for key in my_dict:
+        if temp < key:
+            temp = key
+    return temp
+
+
+a_dict = {'bill': 1, 'rich': 2, 'fred': 10, 'walter': 20}
+print(f2(a_dict))
+
+
 def func(lst):
     for i in range(len(lst) - 1):
         for j in range(i + 1, len(lst)):
@@ -98,12 +110,18 @@ def func(lst):
         return lst
     return -1
 
-
-
-
 if __name__ == '__main__':
     lst1 = [6, 2, 4, 1, 5, 9]
     lst2 = func(lst1)
     lst2[3:-2] = []
     print(lst1)
     main()
+    d1 = {}
+    d1[2] = 10
+    d1['2'] = 20
+
+    d2 = {}
+    d2[2] = d1
+    d2['2'] = d2
+
+    print(d2['2']['2']['2']['2'][2][2])
